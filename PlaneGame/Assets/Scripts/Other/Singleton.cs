@@ -7,7 +7,7 @@ using UnityEngine;
 /// <typeparam name="T">class</typeparam>
 public class Singleton<T> : MonoBehaviour where T : Singleton<T>
 {
-    T instance;
+    static T instance;
     /// <summary>
     /// checks whether instance exists
     /// </summary>
@@ -18,13 +18,13 @@ public class Singleton<T> : MonoBehaviour where T : Singleton<T>
     public static T Instance => instance;
 
 
-    private void Awake() {
+    protected void Awake() {
         if(InstanceExists){
             Destroy(this.gameObject);
         }
         instance=(T)this;
     }
-    void OnDestroy()
+    protected void OnDestroy()
     {
         if(instance==this){
             instance=null;

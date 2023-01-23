@@ -6,7 +6,8 @@ public class Player : Singleton<Player>, IDamagable
 {
     int hp;
 
-
+    void Start(){
+    }
 
 
 

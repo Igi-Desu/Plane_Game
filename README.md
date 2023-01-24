@@ -5,7 +5,7 @@
 Uzyte dodatki:
 Input system od unity
 
-sprite'y ktorych nie bylo wraz z zadaniem zostaly kiedyś stworzone przeze mnie i teraz użyte
+Pozostałe sprite'y pochodzą z własnej biblioteki.
 
 
 Time:
@@ -26,7 +26,7 @@ timer, playtesting, highscore system
 2 hours 45 minutes
 ==========Wszystko co potrzeba zostalo zaimplementowane=============== 
 21:10-21:30  czyszczenie kodu, dodanie miganie gracza podczas iframe'ów
-22:10-22:35  ulepszenie UI, kolorowi przeciwnicy
+22:10-22:45  ulepszenie UI, kolorowi przeciwnicy, drobne poprawki 
 
 
 Do niektórych skryptów takich jak managerowie czy gracz, 

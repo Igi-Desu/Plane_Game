@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class WaveManager : Singleton<WaveManager>
@@ -25,14 +23,20 @@ public class WaveManager : Singleton<WaveManager>
     }
 
     void SpawnEnemies(){
+        //possible y position where enemy can spawn
+        int[] lanes = {-2,-1,0,1,2};
+
         int numOfEnemies = Random.Range(2,5);
-        //TODO get position of enemies to spawn
 
-
+        bool fromArrayEnd = numOfEnemies>5/2;
         for(int i=0; i<numOfEnemies; i++){
-            //spawnenemy on position
-        }
-        float y=0;
-        Instantiate(enemy,new Vector3(baseSpawnPositionX,y,0),Quaternion.identity);
+            //get random number from interval that is tightening with every iteration
+            int randomNum = Random.Range(0,5-i);
+            //spawn enemy on position that was chosen
+            Instantiate(enemy,new Vector3(baseSpawnPositionX,lanes[randomNum],0),Quaternion.identity);
+            //switch chosen number with last possible one that can be chosen
+            lanes[randomNum] = lanes[5-(i+1)];
+            //this way we can generate n random numbers using rand function n times
+        }  
     }
 }

@@ -1,6 +1,3 @@
-using UnityEngine;
-
-
 /// <summary>
 /// Defines behavious of objects that take damage
 /// </summary>

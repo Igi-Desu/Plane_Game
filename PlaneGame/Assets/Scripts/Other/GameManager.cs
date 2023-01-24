@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,15 +6,25 @@ using UnityEngine.Events;
 
 public class GameManager : Singleton<GameManager>
 {
+    /// <summary>
+    /// Everything that should happen when player loses game
+    /// </summary>
     UnityEvent onLose = new UnityEvent();
+    /// <summary>
+    /// Everything that should happen when player starts game
+    /// </summary>
     UnityEvent OnStart = new UnityEvent();
+
     GameObject GameUI;
+
     GameObject StartUI;
-    void Start(){
+
+    new protected void Awake(){
+        base.Awake();
         GameUI=GameObject.Find("GameUI");
         StartUI=GameObject.Find("StartUI");
-        GameUI.SetActive(false);
     }
+
     public void StartGame(){
         OnStart.Invoke();
         StartUI.SetActive(false);
@@ -31,25 +42,19 @@ public class GameManager : Singleton<GameManager>
         // Time.timeScale=0;
 
     }
-    /// <summary>
-    /// Adds action that shall happen on losing game
-    /// </summary>
-    /// <param name="callback">action</param>
-    /// <returns>added action</returns>
+    //done that way, so that other scripts don't have much control over those events
     public UnityAction AddOnLoseAction(UnityAction callback){
         onLose.AddListener(callback);
         return callback;
     }
-    public UnityAction RemoveOnLoseAction(UnityAction callback){
+    public void RemoveOnLoseAction(UnityAction callback){
         onLose.RemoveListener(callback);
-        return callback;
     }
     public UnityAction AddOnStartAction(UnityAction callback){
         OnStart.AddListener(callback);
         return callback;
     }
-    public UnityAction RemoveOnStartAction(UnityAction callback){
+    public void RemoveOnStartAction(UnityAction callback){
         OnStart.RemoveListener(callback);
-        return callback;
     }
 }

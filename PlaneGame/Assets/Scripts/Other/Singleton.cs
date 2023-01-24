@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 /// <summary>
-/// Singleton design pattern, used when one class needs to have just one instance
+/// Singleton design pattern, used when one class needs to have just one instance of it
 /// </summary>
 /// <typeparam name="T">class</typeparam>
 public class Singleton<T> : MonoBehaviour where T : Singleton<T>

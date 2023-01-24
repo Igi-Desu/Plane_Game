@@ -21,3 +21,12 @@ sterowanie gracza, przeciwnik
 strzelanie, wave'y przeciwnikow, kolizja
 15:20-16:00
 UI, zycia, wynik
+16:20-17:30
+timer, playtesting, highscore system
+2 hours 45 minutes
+==========Wszystko co potrzeba zostalo zaimplementowane===============
+
+Do niektórych skryptów takich jak managerowie czy gracz, 
+których może istnieć tylko jedna instancja w danym momencie
+został użyty wzorzec projektowy singleton, ułatwi to odnoszenie się do owych skryptów, oraz zabezpieczy
+przed przypadkowym tworzeniem dodatkowej instancji.

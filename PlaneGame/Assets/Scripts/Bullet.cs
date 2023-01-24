@@ -1,7 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// Simple bullet that travels to the right
+/// </summary>
 public class Bullet : MonoBehaviour,IDamager
 {
     float speed=5;

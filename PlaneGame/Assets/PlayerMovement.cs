@@ -4,15 +4,10 @@ using UnityEngine.InputSystem;
 using Unity.Mathematics;
 public class PlayerMovement : Singleton<PlayerMovement>
 {
+    [SerializeField]GameObject bullet;
     float movement;
     [SerializeField]float speed;
-    /// <summary>
-    /// returns current speed of player
-    /// </summary>
-    public float Speed => speed;
     bool canShot=true;
-
-    [SerializeField]GameObject bullet;
 
     void Start(){
         GameManager.Instance.AddOnStartAction(EnableMovement);
@@ -20,6 +15,9 @@ public class PlayerMovement : Singleton<PlayerMovement>
     }
     void EnableMovement(){
         this.enabled=true;
+        //make sure that we can should, cooldown coroutine can make shooting 
+        //impossible when interrupted
+        canShot=true;
     }
     protected void Update(){
         //clamp position so that player doesn't exit playable ground
@@ -30,12 +28,10 @@ public class PlayerMovement : Singleton<PlayerMovement>
     }
 
     public void Move(InputAction.CallbackContext ctx){
-        if(!this.enabled)return;
         movement=ctx.ReadValue<float>();
     }
 
     public void Shoot(InputAction.CallbackContext ctx){
-        if(!this.enabled)return;
         if(!canShot)return;
         Instantiate(bullet,transform.position,quaternion.identity);
         StartCoroutine(ShootingCooldown(0.5f));

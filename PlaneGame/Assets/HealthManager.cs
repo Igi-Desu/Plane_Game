@@ -1,7 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class HealthManager : Singleton<HealthManager>
 {
@@ -9,6 +7,7 @@ public class HealthManager : Singleton<HealthManager>
     [SerializeField]Sprite heartSprite;
     new protected void Awake()
     {
+        //add all heart objects to list
         base.Awake();
         for(int i=0; i<transform.childCount; i++){
             hearts.Add(transform.GetChild(i).gameObject);

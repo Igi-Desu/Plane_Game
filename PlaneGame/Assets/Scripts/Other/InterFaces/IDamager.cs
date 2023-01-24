@@ -1,4 +1,3 @@
-
 /// <summary>
 /// Defines behavious of object that deal damage
 /// </summary>

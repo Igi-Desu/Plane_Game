@@ -11,7 +11,7 @@ public class ScoreManager : Singleton<ScoreManager>
     TextMeshProUGUI previousScoreText;
     new protected void Awake() {
         base.Awake();
-        currentScoreText= GameObject.Find("GameUI").transform.Find("CurrentScore").GetComponent<TextMeshProUGUI>();
+        currentScoreText= GameObject.Find("GameHUD").transform.Find("CurrentScore").GetComponent<TextMeshProUGUI>();
         highScoreText= GameObject.Find("StartUI").transform.Find("Highscore").GetComponent<TextMeshProUGUI>();
         previousScoreText= GameObject.Find("StartUI").transform.Find("PreviousScore").GetComponent<TextMeshProUGUI>();
         highScoreText.text = PlayerPrefs.GetInt("Highscore",0).ToString();

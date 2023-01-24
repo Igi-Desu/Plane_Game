@@ -15,7 +15,6 @@ public class HealthManager : Singleton<HealthManager>
     }
 
     public void RemoveHeart(){
-        Debug.Log("Player",Player.Instance.gameObject);
         hearts[Player.Instance.Hp].SetActive(false);
     }
     public void Restart() {

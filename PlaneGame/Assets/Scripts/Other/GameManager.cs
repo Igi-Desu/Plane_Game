@@ -9,7 +9,6 @@ public class GameManager : Singleton<GameManager>
     UnityEvent OnStart = new UnityEvent();
     GameObject GameUI;
     GameObject StartUI;
-
     void Start(){
         GameUI=GameObject.Find("GameUI");
         StartUI=GameObject.Find("StartUI");

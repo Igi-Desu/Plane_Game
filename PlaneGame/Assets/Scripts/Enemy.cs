@@ -52,8 +52,8 @@ public class Enemy : MonoBehaviour, IDamager,IDamagable,IDieAnimation
     void OnDestroy()
     {
         if(!shouldGiveScore)return;
-        ScoreManager.Instance.IncreaseScore();
-        GameManager.Instance.RemoveOnLoseAction(explodeOnLose);
+        ScoreManager.Instance?.IncreaseScore();
+        GameManager.Instance?.RemoveOnLoseAction(explodeOnLose);
     }
     /// <summary>
     /// called when enemy should explode and not give player any points

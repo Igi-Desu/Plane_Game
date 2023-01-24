@@ -24,7 +24,10 @@ UI, zycia, wynik
 16:20-17:30
 timer, playtesting, highscore system
 2 hours 45 minutes
-==========Wszystko co potrzeba zostalo zaimplementowane===============
+==========Wszystko co potrzeba zostalo zaimplementowane=============== 
+21:10-21:30  czyszczenie kodu, dodanie miganie gracza podczas iframe'ów
+22:10-22:35  ulepszenie UI, kolorowi przeciwnicy
+
 
 Do niektórych skryptów takich jak managerowie czy gracz, 
 których może istnieć tylko jedna instancja w danym momencie

@@ -7,7 +7,7 @@ using TMPro;
 public class GameEndTimer : Singleton<GameEndTimer>
 {
     TextMeshProUGUI timeText;
-    int baseTimer=5;
+    int baseTimer=60;
     Coroutine timerCor;
 
     void Start(){

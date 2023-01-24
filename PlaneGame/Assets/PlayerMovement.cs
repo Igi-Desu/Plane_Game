@@ -32,6 +32,11 @@ public class PlayerMovement : Singleton<PlayerMovement>
     }
 
     public void Shoot(InputAction.CallbackContext ctx){
+        //input system can still call this function even when script is not enabled
+        //therefore check if it's enabled first.
+        //This problem doesn't occur with move function, since it is just getting value to use
+        //it in update later, which won't be called
+        if(!this.enabled)return;
         if(!canShot)return;
         Instantiate(bullet,transform.position,quaternion.identity);
         StartCoroutine(ShootingCooldown(0.5f));

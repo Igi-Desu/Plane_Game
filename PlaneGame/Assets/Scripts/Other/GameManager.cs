@@ -5,7 +5,9 @@ using UnityEngine.Events;
 
 public class GameManager : Singleton<GameManager>
 {
-    UnityEvent onLose;
+    UnityEvent onLose = new UnityEvent();
+
+    
 
     /// <summary>
     /// Set of actions that should happen when we lose game

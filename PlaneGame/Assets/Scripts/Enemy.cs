@@ -8,12 +8,17 @@ public class Enemy : MonoBehaviour, IDamager,IDamagable
     void Update()
     {
         transform.position+=Vector3.left*speed*Time.deltaTime;
+        if(transform.position.x<-10)
+        {
+            Destroy(gameObject);
+        }
     }
 
     public void TakeDamage(int amount){
         Destroy(gameObject);
     }
-    public void DealDamage(int amount){
-
+    public void DealDamage(IDamagable damagable){
+        damagable.TakeDamage(1);
+        Destroy(gameObject);
     }
 }

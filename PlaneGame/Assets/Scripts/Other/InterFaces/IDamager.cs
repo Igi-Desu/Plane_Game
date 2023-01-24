@@ -4,5 +4,5 @@
 /// </summary>
 public interface IDamager 
 {
-    void DealDamage(int amount);
+    void DealDamage(IDamagable damagable);
 }

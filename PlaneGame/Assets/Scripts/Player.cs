@@ -15,12 +15,12 @@ public class Player : Singleton<Player>, IDamagable, IDieAnimation
     }
     private void OnEnable() {
         hp=3;
+        transform.position=new Vector3(transform.position.x,0,transform.position.z);
         HealthManager.Instance?.Restart();
     }
     public void TakeDamage(int amount){
         if(iFrames) return;
         hp-=amount;
-        Debug.Log("Current hp = " + hp);
         HealthManager.Instance.RemoveHeart();
         if(hp<=0){
             GameManager.Instance.Lose();
@@ -30,12 +30,24 @@ public class Player : Singleton<Player>, IDamagable, IDieAnimation
     }
     IEnumerator IFrames(float time){
         iFrames=true;
+        var cor = StartCoroutine(IFrameFlick());
         GetComponent<CircleCollider2D>().enabled=false;
         yield return new WaitForSeconds(time);
         iFrames=false;
         GetComponent<CircleCollider2D>().enabled=true;
+        //make sure that after iframe flicking player stays visible
+        StopCoroutine(cor);
+        GetComponent<SpriteRenderer>().color=Color.white;
     }
-
+    IEnumerator IFrameFlick(){
+        var spriteRenderer=  GetComponent<SpriteRenderer>();
+        while(true){
+            var c = spriteRenderer.color;
+            c.a=c.a==255? 0: 255;
+            spriteRenderer.color=c;
+            yield return new WaitForSeconds(0.0625f);
+        }
+    }
     private void Explode(){
         PlayDeathAnimation();
         transform.gameObject.SetActive(false);

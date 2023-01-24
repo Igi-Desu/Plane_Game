@@ -6,6 +6,10 @@ public class Enemy : MonoBehaviour, IDamager,IDamagable,IDieAnimation
 {
     float speed=3;
     [SerializeField]GameObject deathAnimation;
+    /// <summary>
+    /// whether enemy should give us score or not
+    /// </summary>
+    bool shouldGiveScore = true;//if enemy dies because it collided with our plane it should not give score
     void Update()
     {
         transform.position+=Vector3.left*speed*Time.deltaTime;
@@ -20,6 +24,7 @@ public class Enemy : MonoBehaviour, IDamager,IDamagable,IDieAnimation
         Destroy(gameObject);
     }
     public void DealDamage(IDamagable damagable){
+        shouldGiveScore=false;
         damagable.TakeDamage(1);
         TakeDamage(1);
     }
@@ -35,6 +40,12 @@ public class Enemy : MonoBehaviour, IDamager,IDamagable,IDieAnimation
         }
         if(other.TryGetComponent(out IDamager damager)){
             damager.DealDamage(GetComponent<IDamagable>());
+            return;
         }
+    }
+    void OnDestroy()
+    {
+        if(!shouldGiveScore)return;
+        ScoreManager.Instance.IncreaseScore();
     }
 }

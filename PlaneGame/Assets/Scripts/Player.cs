@@ -5,6 +5,10 @@ using UnityEngine;
 public class Player : Singleton<Player>, IDamagable
 {
     int hp=3;
+    /// <summary>
+    /// returns current health the player has
+    /// </summary>
+    public int Hp => hp;
     bool iFrames=false;
     void Start(){
         GameManager.Instance.AddOnLoseAction(Explode);
@@ -14,6 +18,7 @@ public class Player : Singleton<Player>, IDamagable
         StartCoroutine(IFrames(0.5f));
         hp-=amount;
         Debug.Log("Current hp = " + hp);
+        HealthManager.Instance.RemoveHeart();
         if(hp<=0){
             GameManager.Instance.Lose();
         }

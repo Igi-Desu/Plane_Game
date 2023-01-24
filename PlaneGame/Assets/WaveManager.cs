@@ -8,7 +8,7 @@ public class WaveManager : Singleton<WaveManager>
     GameObject enemy;
 
     private float baseSpawnPositionX=10;
-
+    
     void Start(){
         timer=baseTimer;
         enemy=Resources.Load("Enemies/Enemy") as GameObject;
@@ -21,7 +21,6 @@ public class WaveManager : Singleton<WaveManager>
             SpawnEnemies();
         }
     }
-
     void SpawnEnemies(){
         //possible y position where enemy can spawn
         int[] lanes = {-2,-1,0,1,2};
@@ -33,7 +32,7 @@ public class WaveManager : Singleton<WaveManager>
             //get random number from interval that is tightening with every iteration
             int randomNum = Random.Range(0,5-i);
             //spawn enemy on position that was chosen
-            Instantiate(enemy,new Vector3(baseSpawnPositionX,lanes[randomNum],0),Quaternion.identity);
+            Instantiate(enemy,new Vector3(baseSpawnPositionX,lanes[randomNum],0),enemy.transform.rotation);
             //switch chosen number with last possible one that can be chosen
             lanes[randomNum] = lanes[5-(i+1)];
             //this way we can generate n random numbers using rand function n times

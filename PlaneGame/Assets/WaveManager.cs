@@ -1,23 +1,34 @@
+using System.Collections;
 using UnityEngine;
 
 public class WaveManager : Singleton<WaveManager>
 {
-    float timer;
-
+    [Tooltip("Time between next enemy wave spawn")]
     [SerializeField]float baseTimer;
     GameObject enemy;
-
     private float baseSpawnPositionX=10;
     
+    Coroutine waveCor=null;
     void Start(){
-        timer=baseTimer;
         enemy=Resources.Load("Enemies/Enemy") as GameObject;
+        GameManager.Instance.AddOnStartAction(StartWaves);
+        GameManager.Instance.AddOnLoseAction(StopWaves);
     }
-    void Update()
-    {
-        timer-=Time.deltaTime;
-        if(timer<=0){
-            timer=baseTimer;
+    void StartWaves(){
+        if(waveCor!=null){
+            Debug.LogWarning("Wave coroutine is already running");
+            return;
+        }
+        waveCor=StartCoroutine(WaveCoroutine());
+    }
+    void StopWaves(){
+        if(waveCor==null)return;
+        StopCoroutine(waveCor);
+        waveCor=null;
+    }
+    IEnumerator WaveCoroutine(){
+        while(true){
+            yield return new WaitForSeconds(baseTimer);
             SpawnEnemies();
         }
     }
@@ -25,7 +36,7 @@ public class WaveManager : Singleton<WaveManager>
         //possible y position where enemy can spawn
         int[] lanes = {-2,-1,0,1,2};
 
-        int numOfEnemies = Random.Range(2,5);
+        int numOfEnemies = Random.Range(2,6);
 
         bool fromArrayEnd = numOfEnemies>5/2;
         for(int i=0; i<numOfEnemies; i++){

@@ -10,6 +10,9 @@ public class Bullet : MonoBehaviour,IDamager
     void Update()
     {
         transform.position+=Vector3.right*speed*Time.deltaTime;
+        if(transform.position.x>10){
+            Destroy(gameObject);
+        }
     }
     public void DealDamage(IDamagable damagable){
         damagable.TakeDamage(1);

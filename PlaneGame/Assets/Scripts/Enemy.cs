@@ -1,15 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Enemy : MonoBehaviour, IDamager,IDamagable,IDieAnimation
 {
     float speed=3;
+    UnityAction explodeOnLose;
     [SerializeField]GameObject deathAnimation;
     /// <summary>
     /// whether enemy should give us score or not
     /// </summary>
     bool shouldGiveScore = true;//if enemy dies because it collided with our plane it should not give score
+    void Start(){
+        speed=MovingBackground.Instance.Speed;
+        explodeOnLose = GameManager.Instance.AddOnLoseAction(Explode);
+    }
     void Update()
     {
         transform.position+=Vector3.left*speed*Time.deltaTime;
@@ -47,5 +53,14 @@ public class Enemy : MonoBehaviour, IDamager,IDamagable,IDieAnimation
     {
         if(!shouldGiveScore)return;
         ScoreManager.Instance.IncreaseScore();
+        GameManager.Instance.RemoveOnLoseAction(explodeOnLose);
+    }
+    /// <summary>
+    /// called when enemy should explode and not give player any points
+    /// </summary>
+    void Explode(){
+        shouldGiveScore=false;
+        PlayDeathAnimation();
+        Destroy(gameObject);
     }
 }

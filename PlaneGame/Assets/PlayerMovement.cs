@@ -14,7 +14,13 @@ public class PlayerMovement : Singleton<PlayerMovement>
 
     [SerializeField]GameObject bullet;
 
-
+    void Start(){
+        GameManager.Instance.AddOnStartAction(EnableMovement);
+        this.enabled=false;
+    }
+    void EnableMovement(){
+        this.enabled=true;
+    }
     protected void Update(){
         //clamp position so that player doesn't exit playable ground
         float yPos= math.clamp(transform.position.y+movement*speed*Time.deltaTime,-2,2);
@@ -24,10 +30,12 @@ public class PlayerMovement : Singleton<PlayerMovement>
     }
 
     public void Move(InputAction.CallbackContext ctx){
+        if(!this.enabled)return;
         movement=ctx.ReadValue<float>();
     }
 
     public void Shoot(InputAction.CallbackContext ctx){
+        if(!this.enabled)return;
         if(!canShot)return;
         Instantiate(bullet,transform.position,quaternion.identity);
         StartCoroutine(ShootingCooldown(0.5f));

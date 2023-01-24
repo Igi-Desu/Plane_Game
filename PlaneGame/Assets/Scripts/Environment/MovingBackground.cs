@@ -17,7 +17,7 @@ public class MovingBackground : Singleton<MovingBackground>
     [SerializeField]Vector3 basePosition;
 
     void Start(){
-
+        backgroundSize*=transform.localScale.x;
     }
     void Update()
     {

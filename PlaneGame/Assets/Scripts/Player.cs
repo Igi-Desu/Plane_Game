@@ -9,15 +9,9 @@ public class Player : Singleton<Player>, IDamagable
     void Start(){
         GameManager.Instance.AddOnLoseAction(Explode);
     }
-    private void OnTriggerEnter2D(Collider2D other) {
-        if(iFrames) return;
-           if(other.TryGetComponent(out IDamager script)){
-                script.DealDamage(GetComponent<IDamagable>());
-                StartCoroutine(IFrames(0.5f));
-           }
-    }
-
     public void TakeDamage(int amount){
+        if(iFrames) return;
+        StartCoroutine(IFrames(0.5f));
         hp-=amount;
         Debug.Log("Current hp = " + hp);
         if(hp<=0){

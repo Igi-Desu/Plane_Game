@@ -9,10 +9,10 @@ public class Enemy : MonoBehaviour, IDamager,IDamagable,IDieAnimation
     /// <summary>
     /// whether enemy should give us score or not
     /// </summary>
-    bool shouldGiveScore = true;//if enemy dies because it collided with our plane it should not give score
     void Start(){
         speed=MovingBackground.Instance.Speed;
         explodeOnLose = GameManager.Instance.AddOnLoseAction(Explode);
+        ColorPlaneRandom();
     }
     void Update()
     {
@@ -23,14 +23,40 @@ public class Enemy : MonoBehaviour, IDamager,IDamagable,IDieAnimation
         }
     }
 
+    /// <summary>
+    /// colors plane with randomly chosen color
+    /// </summary>
+    void ColorPlaneRandom(){
+        int a = Random.Range(0,5);
+        Color c = Color.white;
+        switch(a){
+            case 0:
+                c=Color.red/1.5f;
+                break;
+            case 1:
+                c=Color.yellow/1.5f;
+                break;
+            case 2:
+                c=Color.blue/1.5f;
+                break;
+            case 3:
+                c=Color.gray/1.5f;
+                break;
+            case 4:
+                c=Color.white;
+                break;
+        }
+        GetComponent<SpriteRenderer>().color=c;
+    }
     public void TakeDamage(int amount){
         PlayDeathAnimation();
+        ScoreManager.Instance?.IncreaseScore();
+        GameManager.Instance?.RemoveOnLoseAction(explodeOnLose);
         Destroy(gameObject);
     }
     public void DealDamage(IDamagable damagable){
-        shouldGiveScore=false;
         damagable.TakeDamage(1);
-        TakeDamage(1);
+        Explode();
     }
     public void PlayDeathAnimation(){
         if(deathAnimation==null)return;
@@ -47,17 +73,10 @@ public class Enemy : MonoBehaviour, IDamager,IDamagable,IDieAnimation
             return;
         }
     }
-    void OnDestroy()
-    {
-        if(!shouldGiveScore)return;
-        ScoreManager.Instance?.IncreaseScore();
-        GameManager.Instance?.RemoveOnLoseAction(explodeOnLose);
-    }
     /// <summary>
-    /// called when enemy should explode and not give player any points
+    /// called when enemy should immediatly be destroyed and not give player points
     /// </summary>
     void Explode(){
-        shouldGiveScore=false;
         PlayDeathAnimation();
         Destroy(gameObject);
     }

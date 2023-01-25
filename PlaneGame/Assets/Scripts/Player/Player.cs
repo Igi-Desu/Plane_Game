@@ -4,10 +4,6 @@ using UnityEngine;
 public class Player : Singleton<Player>, IDamagable, IDieAnimation
 {
     int hp=3;
-    /// <summary>
-    /// returns current health the player has
-    /// </summary>
-    public int Hp => hp;
     bool iFrames=false;
     [SerializeField]GameObject deathAnimation;
     void Start(){
@@ -21,7 +17,7 @@ public class Player : Singleton<Player>, IDamagable, IDieAnimation
     public void TakeDamage(int amount){
         if(iFrames) return;
         hp-=amount;
-        HealthManager.Instance.RemoveHeart();
+        HealthManager.Instance.RemoveHeart(hp);
         if(hp<=0){
             GameManager.Instance.Lose();
             return;

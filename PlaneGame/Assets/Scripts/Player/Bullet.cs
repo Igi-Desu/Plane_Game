@@ -6,7 +6,6 @@ public class Bullet : MonoBehaviour,IDamager
 {
     float speed=5;
 
-    // Update is called once per frame
     void Update()
     {
         transform.position+=Vector3.right*speed*Time.deltaTime;

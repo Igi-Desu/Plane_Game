@@ -19,12 +19,14 @@ public class GameManager : Singleton<GameManager>
 
     GameObject StartUI;
 
-    void Start(){
+    new protected void Awake(){
+        base.Awake();
         GameUI=GameObject.Find("GameHUD");
         StartUI=GameObject.Find("StartUI");
+    }
+    void Start(){
         GameUI.SetActive(false);
     }
-
     public void StartGame(){
         OnStart.Invoke();
         StartUI.SetActive(false);

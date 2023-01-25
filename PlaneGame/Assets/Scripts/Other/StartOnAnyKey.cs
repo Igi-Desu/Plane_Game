@@ -1,16 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// Simple script that starts the game when player presses any button
+/// </summary>
 public class StartOnAnyKey : MonoBehaviour
 {
-    // Start is called before the first frame update
     void Start()
     {
        GameManager.Instance.AddOnLoseAction(EnableScriptAfterSecond);       
     }
 
-    // Update is called once per frame
     void Update()
     {
         if(Input.anyKey){
@@ -19,6 +17,8 @@ public class StartOnAnyKey : MonoBehaviour
         }   
     }
     void EnableScriptAfterSecond(){
+        //everyone hates when player doesn't have time to react to screen changing
+        //and then starts the game by accident >.>, 1 second should be enough
         Invoke("EnableScript",1);
     }
     void EnableScript(){

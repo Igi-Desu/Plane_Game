@@ -27,6 +27,10 @@ public class GameEndTimer : Singleton<GameEndTimer>
         timeText.text=baseTimer.ToString();
         timerCor=null;
     }
+    /// <summary>
+    /// Ticks down every second and and changes timer text, game ends after it reaches 0.
+    /// </summary>
+    /// <returns></returns>
     IEnumerator Timer(){
         int timer=baseTimer;
         //timer can be zero and it's by design i like the adrenaline when timer in games shows zero, but

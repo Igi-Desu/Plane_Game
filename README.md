@@ -1,5 +1,9 @@
 # Plane_Game
 
+Sterowanie : 
+W S - poruszanie się góra dół
+Spacja lub lewy przycisk myszy, strzelanie
+
 
 
 Uzyte dodatki:
@@ -10,23 +14,30 @@ Pozostałe sprite'y pochodzą z własnej biblioteki.
 
 Time:
 23.01.2023
-19:30-20:15 :
+19:30-20:15 ;
 stworzenie projektu, przesuwanie swiata, input system, 
 import assetow, baza pod playera i gamemanager
-20:30-21 :
+20:30-21:00 ;
 sterowanie gracza, przeciwnik 
 1 hour 15 minutes
 24.01.2023
-12:25-13:30 - 
+12:25-13:30 ; 
 strzelanie, wave'y przeciwnikow, kolizja
-15:20-16:00
+15:20-16:00 ;
 UI, zycia, wynik
-16:20-17:30
+16:20-17:30 ;
 timer, playtesting, highscore system
 2 hours 45 minutes
 ==========Wszystko co potrzeba zostalo zaimplementowane=============== 
-21:10-21:30  czyszczenie kodu, dodanie miganie gracza podczas iframe'ów
-22:10-22:45  ulepszenie UI, kolorowi przeciwnicy, drobne poprawki 
+zajeło to równo 4 godziny
+
+
+21:10-21:30 ;  czyszczenie kodu, dodanie miganie gracza podczas iframe'ów
+22:10-22:45 ;  ulepszenie UI, kolorowi przeciwnicy, drobne poprawki 
+8:20-8:30 finalowe poprawki i czyszczenie kodu
+65 minut
+
+razem 5 godzin i 5 minut
 
 
 Do niektórych skryptów takich jak managerowie czy gracz, 
